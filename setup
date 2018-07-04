@@ -1,7 +1,11 @@
 #!/bin/bash
 
-echo "# bin" >> README.md
+###
+# Program to set up a git repository. 
+# credit: defualt GitHub things, slightly modified for blank README
+###
 git init
+touch README.md
 git add README.md
 git commit -m "first commit"
 git remote add origin git@github.com:jeffersonKipp/bin.git

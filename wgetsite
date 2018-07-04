@@ -1,5 +1,9 @@
 #!/bin/bash
 
+###
+# Program that downloads a site. Asks for the site to download and
+# the domain to restrict the program to.
+###
 echo -n "site: "
 read SITE
 echo -n "domain: "
