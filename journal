@@ -1,0 +1,83 @@
+#!/bin/bash
+# Journaling program for personal use.
+# BSD/MacOS specific due to GNU vs BSD date implementation.
+# Jefferson Chen
+
+# print usage
+printUsage () {
+  echo
+  echo "    usage: journal [read/write]"
+  echo "        read:      list view of all journal entries"
+  echo "        today:     today's journal"
+  echo "        tomrrow:   tomorrow's journal"
+  echo "        yesterday: yesterday's journal"
+  echo "        week:      this week's journal"
+  echo
+}
+
+JOURNAL_DIR="/Users/jeffkipp/Table/Personal/Journals"
+
+## START ##
+
+# check has one arg
+if [ $# != 1 ]; then
+  printUsage
+  exit 1
+fi
+
+# process read flag
+if [ $1 == read ]; then
+  vim "$JOURNAL_DIR"
+  exit 0
+fi
+
+# today flag
+if [ $1 == today ]; then
+  touch "$JOURNAL_DIR"/`date +"%y.%m.%d"`\ Journal.txt
+  vim "$JOURNAL_DIR"/`date +"%y.%m.%d"`\ Journal.txt
+  exit 0
+fi
+
+# tomorrow flag
+if [ $1 == tomorrow ]; then
+  touch "$JOURNAL_DIR"/`date -v +1d +"%y.%m.%d"`\ Journal.txt
+  vim "$JOURNAL_DIR"/`date -v +1d +"%y.%m.%d"`\ Journal.txt
+  exit 0
+fi
+
+# yesterday flag
+if [ $1 == yesterday ]; then
+  touch "$JOURNAL_DIR"/`date -v -1d +"%y.%m.%d"`\ Journal.txt
+  vim "$JOURNAL_DIR"/`date -v -1d +"%y.%m.%d"`\ Journal.txt
+  exit 0
+fi
+
+# week flag
+if [ $1 == week ]; then
+  touch "$JOURNAL_DIR"/`date -v -sat +"%y.%m.%d"`\ Week\ Journal.txt
+  vim "$JOURNAL_DIR"/`date -v -sat +"%y.%m.%d"`\ Week\ Journal.txt
+  exit 0
+fi
+
+# unrecognized flag; error
+echo "error: unrecognzed flag"
+printUsage
+exit 2
+
+# DID
+# wrote draft
+# debugged touch not working - has to use full path to file
+# added tomorrow, yesterday, and week functionality
+#  copy pasted from faulty Today
+
+# TODO
+# default journal headers
+# add readall functionality
+# make date format changeable
+# make easier to read
+# make journal identifier format changeable (just const)
+# make weeek journal identifier format changeable (just const)
+# clean up variables
+
+# FEATURES (things that I'll likely never need)
+# document exit codes
