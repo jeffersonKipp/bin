@@ -1,5 +1,5 @@
 #!/bin/bash
-# Journaling program for personal use.
+# Scheduling program for personal use. Copy paste of journal.
 # BSD/MacOS specific due to GNU vs BSD date implementation.
 # usage: journal [read/today/tomorrow/yesterday/week/etc.]
 # Jefferson Chen
@@ -7,16 +7,16 @@
 # print usage
 printUsage () {
   echo
-  echo "    usage: journal [option]"
-  echo "        read:      list view of all journal entries"
-  echo "        today:     today's journal"
-  echo "        tomrrow:   tomorrow's journal"
-  echo "        yesterday: yesterday's journal"
-  echo "        week:      this week's journal"
+  echo "    usage: schedule [option]"
+  echo "        read:      list view of all schedule entries"
+  echo "        today:     today's schedule"
+  echo "        tomrrow:   tomorrow's schedule"
+  echo "        yesterday: yesterday's schedule"
+  echo "        week:      this week's schedule"
   echo
 }
 
-JOURNAL_DIR="/Users/jeffkipp/Table/Personal/Journals"
+SCHEDULE_DIR="/Users/jeffkipp/Table/Personal/Schedules"
 
 ## START ##
 
@@ -28,35 +28,35 @@ fi
 
 # process read flag
 if [ $1 == read ]; then
-  vim "$JOURNAL_DIR"
+  vim "$SCHEDULE_DIR"
   exit 0
 fi
 
 # today flag
 if [ $1 == today ]; then
-  touch "$JOURNAL_DIR"/`date +"%y.%m.%d"`\ Journal.txt
-  vim "$JOURNAL_DIR"/`date +"%y.%m.%d"`\ Journal.txt
+  touch "$SCHEDULE_DIR"/`date +"%y.%m.%d"`\ Schedule.txt
+  vim "$SCHEDULE_DIR"/`date +"%y.%m.%d"`\ Schedule.txt
   exit 0
 fi
 
 # tomorrow flag
 if [ $1 == tomorrow ]; then
-  touch "$JOURNAL_DIR"/`date -v +1d +"%y.%m.%d"`\ Journal.txt
-  vim "$JOURNAL_DIR"/`date -v +1d +"%y.%m.%d"`\ Journal.txt
+  touch "$SCHEDULE_DIR"/`date -v +1d +"%y.%m.%d"`\ Schedule.txt
+  vim "$SCHEDULE_DIR"/`date -v +1d +"%y.%m.%d"`\ Schedule.txt
   exit 0
 fi
 
 # yesterday flag
 if [ $1 == yesterday ]; then
-  touch "$JOURNAL_DIR"/`date -v -1d +"%y.%m.%d"`\ Journal.txt
-  vim "$JOURNAL_DIR"/`date -v -1d +"%y.%m.%d"`\ Journal.txt
+  touch "$SCHEDULE_DIR"/`date -v -1d +"%y.%m.%d"`\ Schedule.txt
+  vim "$SCHEDULE_DIR"/`date -v -1d +"%y.%m.%d"`\ Schedule.txt
   exit 0
 fi
 
 # week flag
 if [ $1 == week ]; then
-  touch "$JOURNAL_DIR"/`date -v -sat +"%y.%m.%d"`\ Week\ Journal.txt
-  vim "$JOURNAL_DIR"/`date -v -sat +"%y.%m.%d"`\ Week\ Journal.txt
+  touch "$SCHEDULE_DIR"/`date -v -sat +"%y.%m.%d"`\ Week\ Schedule.txt
+  vim "$SCHEDULE_DIR"/`date -v -sat +"%y.%m.%d"`\ Week\ Schedule.txt
   exit 0
 fi
 
